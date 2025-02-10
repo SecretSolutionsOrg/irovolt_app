@@ -10,13 +10,29 @@ dependencies:
   flutter:
     sdk: flutter
   cupertino_icons: ^1.0.8
+  flutter_native_splash: ^2.4.4
+  dropdown_search: ^6.0.2
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^5.0.0
 
+# dart run flutter_native_splash:create
+flutter_native_splash:
+  color: "#FFFFFF"
+  image: assets/images/splash.png
+  android: true
+  ios: false
+  web: false
+  android_12:
+    image: assets/images/splash.png
+    color: "#6d9773"
+    icon_background_color: "#FFFFFF"
+    branding: assets/images/branding.png
+
 flutter:
   uses-material-design: true
   assets:
     - assets/images/
+    - assets/data/

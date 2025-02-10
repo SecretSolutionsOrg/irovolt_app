@@ -1,0 +1,12 @@
+[
+  { "id": 1, "name": "TV", "watts": 85 },
+  { "id": 2, "name": "Electric Fan", "watts": 85 },
+  { "id": 3, "name": "Air Conditioner", "watts": 746 },
+  { "id": 4, "name": "Refrigerator", "watts": 160 },
+  { "id": 5, "name": "Rice Cooker", "watts": 700 },
+  { "id": 6, "name": "Washing Machine", "watts": 500 },
+  { "id": 7, "name": "Iron", "watts": 750 },
+  { "id": 8, "name": "Electric Kettle", "watts": 1200 },
+  { "id": 9, "name": "Water Dispenser", "watts": 600 },
+  { "id": 10, "name": "Oven", "watts": 2200 }
+]
