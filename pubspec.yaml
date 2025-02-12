@@ -12,6 +12,7 @@ dependencies:
   cupertino_icons: ^1.0.8
   flutter_native_splash: ^2.4.4
   dropdown_search: ^6.0.2
+  flutter_launcher_icons: ^0.14.3
 
 dev_dependencies:
   flutter_test:
@@ -30,6 +31,10 @@ flutter_native_splash:
     color: "#6d9773"
     icon_background_color: "#FFFFFF"
     branding: assets/images/branding.png
+
+flutter_launcher_icons:
+  android: true
+  image_path: "assets/images/logo.png"
 
 flutter:
   uses-material-design: true
