@@ -14,11 +14,11 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   final dropDownKey = GlobalKey<DropdownSearchState>();
   double hrs = 1;
-  int? selectedWeek;
   List<Appliance> appliances = [];
   Appliance? selectedAppliance;
-  Set<int> selectedDays = {};
   double cpKWH = 11.84;
+  // Set<int> selectedDays = {};
+  // int? selectedWeek;
 
   @override
   void initState() {
@@ -261,96 +261,98 @@ class _HomeState extends State<Home> {
                   ],
                 ),
               ),
-              const SizedBox(height: 20),
-              Padding(
-                padding: EdgeInsets.fromLTRB(16, 0, 0, 0),
-                child: Text(
-                  "Days used per week",
-                  style: TextStyle(
-                    fontSize: 20,
-                    color: const Color(0xffb46617),
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-              const SizedBox(height: 10),
-              SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: List.generate(7, (index) {
-                    bool isSelected = selectedDays.contains(index);
-                    List<String> days = ["SU", "M", "T", "W", "T", "F", "S"];
-                    return ElevatedButton(
-                      onPressed: () {
-                        setState(() {
-                          if (isSelected) {
-                            selectedDays.remove(index);
-                          } else {
-                            selectedDays.add(index);
-                          }
-                        });
-                      },
-                      style: ElevatedButton.styleFrom(
-                        shape: CircleBorder(),
-                        padding: EdgeInsets.all(13),
-                        // backgroundColor: const Color(0xff0c3b2e),
-                        backgroundColor: isSelected ? Color(0xffffba00) : Colors.grey,
-                      ),
-                      child: Text(
-                        days[index],
-                        style: TextStyle(
-                          color: Colors.white,
-                        ),
-                      ),
-                    );
-                  }),
-                ),
-              ),
-              const SizedBox(height: 20),
-              Padding(
-                padding: EdgeInsets.fromLTRB(16, 0, 0, 0),
-                child: Text(
-                  "Weeks used per month",
-                  style: TextStyle(
-                    fontSize: 20,
-                    color: const Color(0xffb46617),
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: List.generate(4, (index) {
-                  List<String> weeks = ["1 Week", "2 Weeks", "3 Weeks", "4 Weeks"];
-                  return ListTile(
-                    title: Text(
-                      weeks[index],
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    leading: Radio(
-                      value: index,
-                      groupValue: selectedWeek,
-                      activeColor: const Color(0xffffba00),
-                      onChanged: (value) {
-                        setState(() {
-                          selectedWeek = value;
-                        });
-                      },
-                    ),
-                  );
-                }),
-              ),
-              const SizedBox(height: 20),
+              // const SizedBox(height: 20),
+              // Padding(
+              //   padding: EdgeInsets.fromLTRB(16, 0, 0, 0),
+              //   child: Text(
+              //     "Days used per week",
+              //     style: TextStyle(
+              //       fontSize: 20,
+              //       color: const Color(0xffb46617),
+              //       fontWeight: FontWeight.bold,
+              //     ),
+              //   ),
+              // ),
+              // const SizedBox(height: 10),
+              // SingleChildScrollView(
+              //   scrollDirection: Axis.horizontal,
+              //   child: Row(
+              //     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              //     children: List.generate(7, (index) {
+              //       bool isSelected = selectedDays.contains(index);
+              //       List<String> days = ["SU", "M", "T", "W", "T", "F", "S"];
+              //       return ElevatedButton(
+              //         onPressed: () {
+              //           setState(() {
+              //             if (isSelected) {
+              //               selectedDays.remove(index);
+              //             } else {
+              //               selectedDays.add(index);
+              //             }
+              //           });
+              //         },
+              //         style: ElevatedButton.styleFrom(
+              //           shape: CircleBorder(),
+              //           padding: EdgeInsets.all(13),
+              //           // backgroundColor: const Color(0xff0c3b2e),
+              //           backgroundColor: isSelected ? Color(0xffffba00) : Colors.grey,
+              //         ),
+              //         child: Text(
+              //           days[index],
+              //           style: TextStyle(
+              //             color: Colors.white,
+              //           ),
+              //         ),
+              //       );
+              //     }),
+              //   ),
+              // ),
+              // const SizedBox(height: 20),
+              // Padding(
+              //   padding: EdgeInsets.fromLTRB(16, 0, 0, 0),
+              //   child: Text(
+              //     "Weeks used per month",
+              //     style: TextStyle(
+              //       fontSize: 20,
+              //       color: const Color(0xffb46617),
+              //       fontWeight: FontWeight.bold,
+              //     ),
+              //   ),
+              // ),
+              // Column(
+              //   mainAxisAlignment: MainAxisAlignment.start,
+              //   children: List.generate(4, (index) {
+              //     List<String> weeks = ["1 Week", "2 Weeks", "3 Weeks", "4 Weeks"];
+              //     return ListTile(
+              //       title: Text(
+              //         weeks[index],
+              //         style: TextStyle(
+              //           fontWeight: FontWeight.bold,
+              //         ),
+              //       ),
+              //       leading: Radio(
+              //         value: index,
+              //         groupValue: selectedWeek,
+              //         activeColor: const Color(0xffffba00),
+              //         onChanged: (value) {
+              //           setState(() {
+              //             selectedWeek = value;
+              //           });
+              //         },
+              //       ),
+              //     );
+              //   }),
+              // ),
+              // const SizedBox(height: 20),
               Center(
                 child: ElevatedButton(
-                  onPressed: () {
+                  onPressed: selectedAppliance != null ? () {
                     double KWHpd = ((selectedAppliance?.watts ?? 0) * hrs) / 1000;
                     double cpDAY = KWHpd * cpKWH;
-                    double cpWEEK = cpDAY * selectedDays.length;
-                    double cpMONTH = cpWEEK * (selectedWeek! + 1);
+                    // double cpWEEK = cpDAY * selectedDays.length;
+                    // double cpMONTH = cpWEEK * (selectedWeek! + 1);
+                    double cpWEEK = cpDAY * 7;
+                    double cpMONTH = cpDAY * 30;
                     double cpYEAR = cpMONTH * 12;
 
                     Navigator.push(
@@ -365,7 +367,7 @@ class _HomeState extends State<Home> {
                         ),
                       ),
                     );
-                  },
+                  } : null,
                   style: ElevatedButton.styleFrom(
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20),
